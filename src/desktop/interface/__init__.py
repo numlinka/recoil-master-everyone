@@ -15,6 +15,7 @@ import core
 from . import _slogan
 from . import _gsi
 from . import _license
+from . import methods
 
 _activitys = []
 
@@ -31,7 +32,7 @@ def initialize_first():
 
     mainwindow = ttkbootstrap.Window()
     mainwindow.title(env.MAIN_TITLE)
-    mainwindow.geometry(f"{core.config.window_width}x{core.config.window_height}")
+    methods.load_mainwindow_state()
 
     notebook = ttkbootstrap.Notebook(mainwindow)
     notebook.pack(fill=BOTH, expand=True, padx=5, pady=5)
@@ -55,6 +56,10 @@ def initialize_setup():
 
 @once
 def initialize_final():
+    mainwindow.protocol("WM_DELETE_WINDOW", core.action.exit)
+    core.action.exit.add_task(methods.save_mainwindow_state, 4800)
+    core.action.exit.add_task(mainwindow.destroy, 5000)
+
     for activity in _activitys:
         objective = getattr(activity, "initialize_final", None)
         objective() if callable(objective) else None

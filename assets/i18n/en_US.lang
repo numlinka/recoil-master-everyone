@@ -4,6 +4,10 @@
 
 slogan = Everyone can be a recoil master!
 
+#define superiors actions
+
+exit = Exit
+
 
 #define superiors UI
 

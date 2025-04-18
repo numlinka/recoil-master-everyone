@@ -4,6 +4,10 @@
 
 slogan = 每个人都可以是压枪大师!
 
+#define superiors actions
+
+exit = 退出程序
+
 
 #define superiors UI
 

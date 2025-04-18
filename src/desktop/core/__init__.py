@@ -1,6 +1,9 @@
 # Licensed under the GNU General Public License v3.0, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
+# std
+import sys
+
 # site
 import i18nco
 import ezudesign
@@ -16,13 +19,14 @@ import interface
 from basic import log, cwd, i18n
 
 # internal
+from . import action
 from . import _convert
-from ._configuration import LocalConfiguration
+from . import _configuration
 
 
-_activitys = [_convert, module, interface]
+_activitys = [_configuration, _convert, action, module, interface]
 
-config: LocalConfiguration
+config: _configuration.LocalConfiguration
 event: ezudesign.eventhub.EventHub
 taskpool: ezudesign.taskpool.TaskPool
 tasksequence: ezudesign.tasksequence.TaskSequence
@@ -31,7 +35,7 @@ tasksequence: ezudesign.tasksequence.TaskSequence
 @once
 def initialize_first() -> None:
     global config, event, taskpool, tasksequence
-    config = LocalConfiguration()
+    config = _configuration.LocalConfiguration()
     event = ezudesign.eventhub.EventHub(constants.event.__all_events__)
     taskpool = ezudesign.taskpool.TaskPool()
     tasksequence = ezudesign.tasksequence.TaskSequence()
@@ -58,6 +62,8 @@ def initialize_setup() -> None:
 def initialize_final() -> None:
     tasksequence.start()
 
+    action.exit.add_task(lambda *_: sys.exit(0), 10000)
+
     for activity in _activitys:
         objective = getattr(activity, "initialize_final", None)
         objective() if callable(objective) else None
@@ -77,5 +83,4 @@ def run() -> None:
     initialize()
     event.emit(constants.event.ENTER_MAINLOOP)
     interface.mainwindow.mainloop()
-    try_exec(exec_item(config.ctrl.save_json, cwd.configuration, base64=True))
     raise SystemExit

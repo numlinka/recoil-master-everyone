@@ -20,6 +20,9 @@ class _CWD (Directory):
 class _LocalI18n (i18nco.Internationalization):
     slogan: str
 
+    class actions (object):
+        exit: str
+
     class UI (object):
         GSI: str
         GSI_depict: str

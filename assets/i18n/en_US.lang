@@ -1,0 +1,85 @@
+# Licensed under the GNU General Public License v3.0.
+# recoil-master-everyone Copyright (C) 2024 numlinka.
+# Internationalization -> en_US
+
+slogan = Everyone can be a recoil master!
+
+
+#define superiors UI
+
+GSI = GSI
+GSI_depict = Game State Integration
+GSI_port = Listening Port
+GSI_timeout = Maximum update time
+GSI_buffer = Data buffer time
+GSI_throttle = Minimum interval time
+GSI_heartbeat = Heartbeat packet interval
+GSI_start_service = Apply and restart the GSI service
+GSI_apply_to_game = Apply to game
+GSI_port_error = The port is invalid!
+GSI_port_error_desc = The port must be between 1 and 65535!\nPlease enter a valid port!
+GSI_value_error = The value is invalid!
+GSI_value_error_desc = The Timeout, Buffer, Throttle, Heartbeat must be a valid positive floating point number!
+GSI_service_running = The GSI service is running!
+GSI_service_stop = The GSI service is stop.
+GSI_service_error = GSI service failure! Please restart or change other ports.
+GSI_game_not_run = The game is not running!
+GSI_game_not_run_desc = You need to start the game first so that we can know the correct path to the game and write the configuration file, understand?
+GSI_game_cfg_error = Unable to write configuration file!
+GSI_game_cfg_error_desc = Please make sure you have launched CS2 correctly and that there are no other interfering programs, and give this program access to the game path.
+GSI_game_cfg_success = Configuration file written successfully!
+GSI_game_cfg_success_desc = We have successfully written the configuration file. To ensure it takes effect, you need to restart the game.
+
+License = Licenses
+
+
+#define superiors ITEM
+
+weapon_glock = Glock-18
+weapon_hkp2000 = P2000
+weapon_usp_silencer = USP-S
+weapon_p250 = P250
+weapon_tec9 = Tec-9
+weapon_fiveseven = Five-SeveN
+weapon_cz75a = CZ75-Auto
+weapon_deagle = Desert Eagle
+weapon_revolver = R8 Revolver
+weapon_dualberettas = Dual Berettas
+weapon_nova = Nova
+weapon_xm1014 = XM1014
+weapon_sawedoff = Sawed-Off
+weapon_mag7 = MAG-7
+weapon_m249 = M249
+weapon_negev = Negev
+weapon_mp9 = MP9
+weapon_mac10 = MAC-10
+weapon_mp7 = MP7
+weapon_mp5sd = MP5-SD
+weapon_ump45 = UMP-45
+weapon_p90 = P90
+weapon_bizon = PP-Bizon
+weapon_famas = FAMAS
+weapon_galilar = Galil AR
+weapon_m4a4 = M4A4
+weapon_m4a1 = M4A4
+weapon_m4a1_silencer = M4A1-S
+weapon_ak47 = AK-47
+weapon_sg556 = SG 553
+weapon_aug = AUG
+weapon_ssg08 = SSG 08
+weapon_awp = AWP
+weapon_g3sg1 = G3SG1
+weapon_scar20 = SCAR-20
+weapon_knife = knife CT
+weapon_knife_t = knife T
+weapon_flashbang = flashbang
+weapon_hegrenade = he grenade
+weapon_smokegrenade = smoke grenade
+weapon_molotov = molotov
+weapon_incgrenade = incgrenade
+weapon_decoy = decoy
+weapon_taser = taser
+weapon_c4 = C4 Bomb
+item_defuser = defuser
+item_kevlar = kevlar
+item_assaultsuit = assault suit

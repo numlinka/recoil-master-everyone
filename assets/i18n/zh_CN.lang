@@ -1,0 +1,85 @@
+# Licensed under the GNU General Public License v3.0.
+# recoil-master-everyone Copyright (C) 2024 numlinka.
+# Internationalization -> zh_CN
+
+slogan = 每个人都可以是压枪大师!
+
+
+#define superiors UI
+
+GSI = GSI
+GSI_desc = 游戏状态集成
+GSI_port = 监听端口
+GSI_timeout = 状态更新的最长时间
+GSI_buffer = 数据缓冲时间
+GSI_throttle = 状态更新的最小间隔时间
+GSI_heartbeat = 心跳包间隔时间
+GSI_start_service = 应用并重启 GSI 服务
+GSI_apply_to_game = 应用到游戏
+GSI_port_error = 端口错误!
+GSI_port_error_desc = 端口范围: 1 - 65535\n默认端口: 25463
+GSI_value_error = 值错误!
+GSI_value_error_desc = 值 Timeout, Buffer, Throttle, Heartbeat 必须是有效正浮点数！
+GSI_service_running = GSI 服务正在运行!
+GSI_service_stop = GSI 服务已停止
+GSI_service_error = GSI 服务故障，请重启或更换其它端口
+GSI_game_not_run = 游戏未运行!
+GSI_game_not_run_desc = 你需要先启动游戏，这样我们才能知道游戏的正确路径并写入配置文件，明白吗？
+GSI_game_cfg_error = 无法写入配置文件
+GSI_game_cfg_error_desc = 请确保你正确启动了 CS2 并且没有其它干扰程序，并提供此程序对游戏路径的访问权限。
+GSI_game_cfg_success = 配置文件写入成功!
+GSI_game_cfg_success_desc = 我们已成功写入配置文件。为确保其生效，你需要重启游戏。
+
+License = 许可证
+
+
+#define superiors ITEM
+
+weapon_glock = Glock-18
+weapon_hkp2000 = P2000
+weapon_usp_silencer = USP-S
+weapon_p250 = P250
+weapon_tec9 = Tec-9
+weapon_fiveseven = Five-SeveN
+weapon_cz75a = CZ75-Auto
+weapon_deagle = Desert Eagle
+weapon_revolver = R8 Revolver
+weapon_dualberettas = Dual Berettas
+weapon_nova = Nova
+weapon_xm1014 = XM1014
+weapon_sawedoff = Sawed-Off
+weapon_mag7 = MAG-7
+weapon_m249 = M249
+weapon_negev = Negev
+weapon_mp9 = MP9
+weapon_mac10 = MAC-10
+weapon_mp7 = MP7
+weapon_mp5sd = MP5-SD
+weapon_ump45 = UMP-45
+weapon_p90 = P90
+weapon_bizon = PP-Bizon
+weapon_famas = FAMAS
+weapon_galilar = Galil AR
+weapon_m4a4 = M4A4
+weapon_m4a1 = M4A4
+weapon_m4a1_silencer = M4A1-S
+weapon_ak47 = AK-47
+weapon_sg556 = SG 553
+weapon_aug = AUG
+weapon_ssg08 = SSG 08
+weapon_awp = AWP
+weapon_g3sg1 = G3SG1
+weapon_scar20 = SCAR-20
+weapon_knife = 刀
+weapon_knife_t = 恐怖分子刀
+weapon_flashbang = 闪光弹
+weapon_hegrenade = 高爆手榴弹
+weapon_smokegrenade = 烟雾弹
+weapon_molotov = 莫洛托夫
+weapon_incgrenade = 燃烧弹
+weapon_decoy = 诱饵弹
+weapon_taser = 电击枪
+weapon_c4 = C4 Bomb
+item_defuser = 拆弹工具
+item_kevlar = 凯夫拉背心
+item_assaultsuit = 凯夫拉背心 + 头盔

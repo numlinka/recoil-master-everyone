@@ -162,3 +162,7 @@ cython_debug/
 # VSCode
 /.vscode
 *.code-workspace
+
+Project
+/configuration
+/logs

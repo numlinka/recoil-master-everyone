@@ -47,7 +47,13 @@ class _LocalI18n (i18nco.Internationalization):
         GSI_game_cfg_success: str
         GSI_game_cfg_success_desc: str
 
-        License: str
+        recoil: str
+        recoil_mou_sen: str
+        recoil_hor_per: str
+        recoil_ver_per: str
+        recoil_smo_coe: str
+
+        licenses: str
 
 
 abscwd = _CWD()

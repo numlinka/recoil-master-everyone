@@ -4,6 +4,7 @@
 
 slogan = Everyone can be a recoil master!
 
+
 #define superiors actions
 
 exit = Exit
@@ -34,7 +35,13 @@ GSI_game_cfg_error_desc = Please make sure you have launched CS2 correctly and t
 GSI_game_cfg_success = Configuration file written successfully!
 GSI_game_cfg_success_desc = We have successfully written the configuration file. To ensure it takes effect, you need to restart the game.
 
-License = Licenses
+recoil = Recoil
+recoil_mou_sen = Game Mouse Sensitivity
+recoil_hor_per = Horizontal percentage
+recoil_ver_per = Vertical percentage
+recoil_smo_coe = Smoothing Coefficient
+
+licenses = Licenses
 
 
 #define superiors ITEM

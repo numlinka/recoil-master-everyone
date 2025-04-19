@@ -22,11 +22,16 @@ class LocalConfiguration (Configuration):
     window_x = setting(int, -1)
     window_y = setting(int, -1)
 
-    gsi_port = setting(int, 25463)
-    gsi_timeout = setting(float, 5.0)
-    gsi_buffer = setting(float, 0.1)
-    gsi_throttle = setting(float, 0.5)
-    gsi_heartbeat = setting(float, 60.0)
+    gsi_port = setting(int, 25463, NumericalRange(1, 65535))
+    gsi_timeout = setting(float, 5.0, NumericalRange(0.1, 60.0))
+    gsi_buffer = setting(float, 0.1, NumericalRange(0.1, 10.0))
+    gsi_throttle = setting(float, 0.5, NumericalRange(0.1, 10.0))
+    gsi_heartbeat = setting(float, 60.0, NumericalRange(0.1, 360.0))
+
+    recoil_mou_sen = setting(float, 1.0, NumericalRange(0.1, 8.0))
+    recoil_hor_per = setting(float, 1.0, NumericalRange(0.0, 2.0))
+    recoil_ver_per = setting(float, 1.0, NumericalRange(0.0, 2.0))
+    recoil_smo_coe = setting(int, 10, NumericalRange(1, 100))
 
 
 def save(*_):

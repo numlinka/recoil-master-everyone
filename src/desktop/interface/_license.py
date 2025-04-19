@@ -16,7 +16,7 @@ from basic import i18n
 class License (object):
     def __init__(self):
         self.frame = ttkbootstrap.Frame(interface.notebook)
-        interface.notebook.add(self.frame, text=i18n.UI.License)
+        interface.notebook.add(self.frame, text=i18n.UI.licenses)
         self.build()
 
     @once

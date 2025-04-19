@@ -44,7 +44,7 @@ def initialize_first() -> None:
     try_exec(exec_item(i18n.ctrl.auto_load, cwd.assets.i18n))
     try_exec(exec_item(log.set_level, config.log_level))
 
-    i18n.ctrl.set_locale(config.localed or i18nco.utils.get_locale_code())
+    # i18n.ctrl.set_locale(config.localed or i18nco.utils.get_locale_code())
 
     for activity in _activitys:
         objective = getattr(activity, "initialize_first", None)

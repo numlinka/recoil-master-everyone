@@ -4,6 +4,7 @@
 
 slogan = 每个人都可以是压枪大师!
 
+
 #define superiors actions
 
 exit = 退出程序
@@ -34,7 +35,13 @@ GSI_game_cfg_error_desc = 请确保你正确启动了 CS2 并且没有其它干�
 GSI_game_cfg_success = 配置文件写入成功!
 GSI_game_cfg_success_desc = 我们已成功写入配置文件。为确保其生效，你需要重启游戏。
 
-License = 许可证
+recoil = 压枪
+recoil_mou_sen = 游戏鼠标灵敏度
+recoil_hor_per = 水平修正幅度
+recoil_ver_per = 垂直修正幅度
+recoil_smo_coe = 鼠标平滑系数
+
+licenses = 许可证
 
 
 #define superiors ITEM

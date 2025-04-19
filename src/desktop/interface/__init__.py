@@ -14,6 +14,7 @@ import core
 # internal
 from . import _slogan
 from . import _gsi
+from . import _recoil
 from . import _license
 from . import methods
 
@@ -23,6 +24,7 @@ mainwindow: ttkbootstrap.Window
 notebook: ttkbootstrap.Notebook
 slogan: _slogan.Slogan
 gsi: _gsi.GSI
+recoil: _recoil.Recoil
 licenses: _license.License
 
 
@@ -44,9 +46,10 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global slogan, gsi, licenses
+    global slogan, gsi, recoil, licenses
     slogan = _slogan.Slogan()
     gsi = _gsi.GSI()
+    recoil = _recoil.Recoil()
     licenses = _license.License()
 
     for activity in _activitys:

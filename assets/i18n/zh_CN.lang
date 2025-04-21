@@ -36,10 +36,12 @@ GSI_game_cfg_success = 配置文件写入成功!
 GSI_game_cfg_success_desc = 我们已成功写入配置文件。为确保其生效，你需要重启游戏。
 
 recoil = 压枪
-recoil_mou_sen = 游戏鼠标灵敏度
-recoil_hor_per = 水平修正幅度
-recoil_ver_per = 垂直修正幅度
-recoil_smo_coe = 鼠标平滑系数
+recoil_sensitivity = 游戏鼠标灵敏度
+recoil_horizontal = 水平修正幅度
+recoil_vertical = 垂直修正幅度
+recoil_smoothing = 鼠标平滑系数
+recoil_leading_delay = 前导延迟占比
+recoil_duty_cycle = 鼠标操作占空比
 
 licenses = 许可证
 
@@ -82,14 +84,14 @@ weapon_awp = AWP
 weapon_g3sg1 = G3SG1
 weapon_scar20 = SCAR-20
 weapon_knife = 刀
-weapon_knife_t = 恐怖分子刀
+weapon_knife_t = 刀
 weapon_flashbang = 闪光弹
 weapon_hegrenade = 高爆手榴弹
 weapon_smokegrenade = 烟雾弹
 weapon_molotov = 莫洛托夫
 weapon_incgrenade = 燃烧弹
 weapon_decoy = 诱饵弹
-weapon_taser = 电击枪
+weapon_taser = 电坤枪
 weapon_c4 = C4 Bomb
 item_defuser = 拆弹工具
 item_kevlar = 凯夫拉背心

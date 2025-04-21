@@ -28,10 +28,13 @@ class LocalConfiguration (Configuration):
     gsi_throttle = setting(float, 0.5, NumericalRange(0.1, 10.0))
     gsi_heartbeat = setting(float, 60.0, NumericalRange(0.1, 360.0))
 
-    recoil_mou_sen = setting(float, 1.0, NumericalRange(0.1, 8.0))
-    recoil_hor_per = setting(float, 1.0, NumericalRange(0.0, 2.0))
-    recoil_ver_per = setting(float, 1.0, NumericalRange(0.0, 2.0))
-    recoil_smo_coe = setting(int, 10, NumericalRange(1, 100))
+    recoil_enable = setting(int, 0, NumericalRange(0, 1))
+    recoil_sensitivity = setting(float, 1.0, NumericalRange(0.1, 8.0))
+    recoil_horizontal = setting(float, 1.0, NumericalRange(0.0, 2.0)) 
+    recoil_vertical = setting(float, 1.0, NumericalRange(0.0, 2.0))
+    recoil_smoothing = setting(int, 10, NumericalRange(1, 100))
+    recoil_leading_delay = setting(float, 0.2, NumericalRange(0.0, 0.5))
+    recoil_duty_cycle = setting(float, 0.5, NumericalRange(0.0, 1.0))
 
 
 def save(*_):

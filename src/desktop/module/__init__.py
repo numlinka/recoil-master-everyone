@@ -35,8 +35,6 @@ def initialize_setup():
 
 @once
 def initialize_final():
-    weapon.load("weapon_ak47")
-    print(weapon.mouse_tracks)
     for activity in _activitys:
         objective = getattr(activity, "initialize_final", None)
         objective() if callable(objective) else None

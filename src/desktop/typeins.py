@@ -3,7 +3,7 @@
 
 # std
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Literal, Iterable, TypedDict
 
 # local
 from constants import *
@@ -109,3 +109,9 @@ class GameState (object):
     player: GameStatePlayer = field(default_factory=GameStatePlayer)
     provider: GameStateProvider = field(default_factory=GameStateProvider)
     round: GameStateRound = field(default_factory=GameStateRound)
+
+
+class WeaponOffsets (TypedDict):
+    RPM: int
+    FOE: int
+    offsets: list[list[int, int]]

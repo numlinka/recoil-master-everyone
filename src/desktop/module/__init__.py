@@ -6,11 +6,13 @@ from typex import once
 
 # internal
 from . import _gsi
+from . import _weapon
 
 
 _activitys = [_gsi]
 
 gsi: _gsi.GSI
+weapon: _weapon.Weapon
 
 
 @once
@@ -22,8 +24,9 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global gsi
+    global gsi, weapon
     gsi = _gsi.GSI()
+    weapon = _weapon.Weapon()
 
     for activity in _activitys:
         objective = getattr(activity, "initialize_setup", None)
@@ -32,6 +35,8 @@ def initialize_setup():
 
 @once
 def initialize_final():
+    weapon.load("weapon_ak47")
+    print(weapon.mouse_tracks)
     for activity in _activitys:
         objective = getattr(activity, "initialize_final", None)
         objective() if callable(objective) else None

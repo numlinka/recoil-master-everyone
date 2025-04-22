@@ -113,7 +113,7 @@ abscwd = _CWD()
 _CWD._include_ = False
 cwd = _CWD()
 
-log = logop.Logging(stdout=False, asynchronous=True)
+log = logop.Logging(stdout=False)
 log.pause()
 
 i18n = _LocalI18n()

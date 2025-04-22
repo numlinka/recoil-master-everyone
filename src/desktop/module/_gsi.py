@@ -48,6 +48,9 @@ class GSI (object):
                     weapon_num: GameStatePlayerWeapon(**weapon_data)
                     for weapon_num, weapon_data in value.items()
                 }
+                for _, weapon in self.state.player.weapons.items():
+                    if weapon.state != constants.gsi.HOLSTERED:
+                        self.state.player.active_weapon = weapon
                 continue
 
             elif isinstance(value, dict):
@@ -100,7 +103,7 @@ class GSIHTTPRequestHandler (BaseHTTPRequestHandler):
 
         try:
             data = json.loads(post_data)
-            module.gsi.update_state(data)
+            module.gsi.update(data)
 
         except Exception:
             ...

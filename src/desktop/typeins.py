@@ -85,6 +85,7 @@ class GameStatePlayer (object):
     state: GameStatePlayerState = field(default_factory=GameStatePlayerState)
     match_stats: GameStatePlayerMatch = field(default_factory=GameStatePlayerMatch)
     weapons: dict[str, GameStatePlayerWeapon] = field(default_factory=dict)
+    active_weapon: GameStatePlayerWeapon = field(default_factory=GameStatePlayerWeapon)
 
 
 @dataclass

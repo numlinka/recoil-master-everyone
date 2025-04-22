@@ -142,7 +142,7 @@ class GSI (object):
         core.config.gsi_heartbeat = round(s_heartbeat, 1)
 
         for process in psutil.process_iter():
-            if process.name() == "cs2.exe":
+            if process.name() == constants.CS2_EXE:
                 break
 
         else:

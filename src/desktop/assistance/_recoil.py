@@ -30,7 +30,7 @@ class Recoil (object):
 
         while True:
             count += 1
-            next_time = start_time + count * 0.005
+            next_time = start_time + 0.005 * count
             difference = next_time - time.perf_counter()
             if difference > 0:
                 time.sleep(difference)
@@ -44,23 +44,25 @@ class Recoil (object):
                 step = 0
                 continue
 
+            step += 1
+
             if step >= self._length:
                 step = 0
                 self.fire.clear()
+                continue
 
             with self._lock:
                 mh, mv = self._tracks[step]
                 if mh == 0 and mv == 0: continue
                 win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, mh, mv)
 
-            step += 1
 
     def set_tracks(self, msg: str) -> None:
         data = [int(x) for x in msg.split(",")]
         if len(data) % 2 != 0: data = data[:-1]
         oxl = [x for x in data[0::2]]
         oxr = [x for x in data[1::2]]
-        tracks = zip(oxl, oxr)
+        tracks = list(zip(oxl, oxr))
         length = len(tracks)
 
         with self._lock:

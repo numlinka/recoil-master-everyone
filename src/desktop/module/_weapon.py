@@ -21,7 +21,7 @@ class Weapon (object):
         self._original_offsets: Iterable[Iterable[int, int]] = []
         self._offsets: Iterable[tuple[int, int]] = []
 
-    def load (self, weapon_name: str) -> bool:
+    def load(self, weapon_name: str) -> bool:
         if not weapon_name:
             return False
 
@@ -38,10 +38,9 @@ class Weapon (object):
         self._original_offsets = data["offsets"]
 
         self.calculate_offsets()
-        self.calculate_mouse_tracks()
         return True
 
-    def calculate_offsets (self) -> None:
+    def calculate_offsets(self) -> None:
         rel_x = [i[0] for i in self._original_offsets]
         rel_y = [i[1] for i in self._original_offsets]
 

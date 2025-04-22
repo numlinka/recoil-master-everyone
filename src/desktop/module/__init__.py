@@ -7,12 +7,14 @@ from typex import once
 # internal
 from . import _gsi
 from . import _weapon
+from . import _condition
 
 
-_activitys = [_gsi]
+_activitys = [_gsi, _condition]
 
 gsi: _gsi.GSI
 weapon: _weapon.Weapon
+condition: _condition.Condition
 
 
 @once
@@ -24,9 +26,10 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global gsi, weapon
+    global gsi, weapon, condition
     gsi = _gsi.GSI()
     weapon = _weapon.Weapon()
+    condition = _condition.Condition()
 
     for activity in _activitys:
         objective = getattr(activity, "initialize_setup", None)

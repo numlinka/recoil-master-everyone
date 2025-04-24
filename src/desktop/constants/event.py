@@ -9,6 +9,8 @@ GSI_START = "rme.gsi-start"
 GSI_ERROR = "rme.gsi-error"
 GSI_STOP = "rme.gsi-stop"
 
+CONDITION_UPDATE = "rme.condition-update"
+
 
 __all__ = [x for x in dir() if not x.startswith("_")]
 __all_events__ = [v for x, v in globals().items() if not x.startswith("_")]

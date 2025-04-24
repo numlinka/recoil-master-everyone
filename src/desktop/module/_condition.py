@@ -89,12 +89,14 @@ class Condition (object):
             self._active_window = process_name
 
     def status_update(self) -> None:
-        condition = self.new_condition()
-        if condition == self._last_condition:
-            return
+        with self._lock:
+            condition = self.new_condition()
+            if condition == self._last_condition:
+                return
 
-        self._last_condition = condition
+            self._last_condition = condition
         assistance.command.condition(condition)
+        core.event.emit(constants.event.CONDITION_UPDATE)
 
     @once
     def build(self):

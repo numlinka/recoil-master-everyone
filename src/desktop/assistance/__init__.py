@@ -10,6 +10,9 @@ from typing import Optional
 # site
 from typex import once
 
+# local
+import core
+
 # internal
 from . import command
 from . import _recoil
@@ -61,4 +64,5 @@ def stop():
 
 @once
 def initialize_final():
+    core.action.exit.add_task(stop, 8000)
     run()

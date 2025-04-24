@@ -94,7 +94,7 @@ class Condition (object):
 
     @once
     def build(self):
-        threading.Thread(None, self.__check_active_process_name, "ActiveWindowCheck").start()
+        threading.Thread(None, self.__check_active_process_name, "ActiveWindowCheck", daemon=True).start()
 
 
 @once

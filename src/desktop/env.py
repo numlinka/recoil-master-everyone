@@ -3,11 +3,11 @@
 
 version_info = (1, 0, 0)
 
-PROGECT_NAME = "recoil-master-everyone"
-PROGECT_VERSION = ".".join(map(str, version_info))
+PROJECT_NAME = "recoil-master-everyone"
+PROJECT_VERSION = ".".join(map(str, version_info))
 
 AUTHOR_NAME = "numlinka"
 
-MAIN_TITLE = f"{PROGECT_NAME} v{PROGECT_VERSION} -by {AUTHOR_NAME}"
+MAIN_TITLE = f"{PROJECT_NAME} v{PROJECT_VERSION} -by {AUTHOR_NAME}"
 
 GITHUB = "https://github.com/numlinka/recoil-master-everyone"

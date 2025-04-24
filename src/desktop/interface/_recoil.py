@@ -2,22 +2,16 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
 # std
-import os
 import tkinter
 
 # size
-import psutil
 import ttkbootstrap
 
 from typex import once
-from ezudesign.utils import try_exec, exec_item
-from ttkbootstrap.dialogs import Messagebox
 from ttkbootstrap.constants import *
 
 # local
 import core
-import module
-import constants
 import interface
 from basic import i18n
 

@@ -2,10 +2,9 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
 # std
-import os
 import time
 import threading
-from dataclasses import dataclass
+from typing import NoReturn
 
 # site
 import psutil
@@ -22,7 +21,7 @@ import assistance
 
 
 class Condition (object):
-    def __init__(self):
+    def __init__(self) -> None:
         self._lock = threading.RLock()
         self._last_condition = False
         self._active_window = ""
@@ -30,7 +29,7 @@ class Condition (object):
         self._invalid_weapons = []
         self._last_taracks = ""
 
-    def __check_active_process_name(self):
+    def __check_active_process_name(self) -> NoReturn:
         while True:
             try:
                 time.sleep(0.5)
@@ -42,11 +41,11 @@ class Condition (object):
             except Exception as _:
                 ...
 
-    def set_effective_weapons(self, weapons: list[str]):
+    def set_effective_weapons(self, weapons: list[str]) -> None:
         with self._lock:
             self._effective_weapons = weapons
 
-    def new_condition(self):
+    def new_condition(self) -> bool:
         state = module.gsi.state
 
         with self._lock:
@@ -81,7 +80,7 @@ class Condition (object):
         assistance.command.tracks(mouse_tracks)
         return True
 
-    def active_update(self, process_name: str):
+    def active_update(self, process_name: str) -> None:
         with self._lock:
             if process_name != self._active_window:
                 self._active_window = process_name
@@ -89,24 +88,18 @@ class Condition (object):
 
             self._active_window = process_name
 
-    def status_update(self):
+    def status_update(self) -> None:
         condition = self.new_condition()
-        if condition != self._last_condition:
-            self._last_condition = condition
-            assistance.command.condition(condition)
+        if condition == self._last_condition:
+            return
+
+        self._last_condition = condition
+        assistance.command.condition(condition)
 
     @once
     def build(self):
         threading.Thread(None, self.__check_active_process_name, "ActiveWindowCheck", daemon=True).start()
 
-
-@once
-def initialize_first():
-    ...
-
-@once
-def initialize_setup():
-    ...
 
 @once
 def initialize_final():

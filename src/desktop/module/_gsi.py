@@ -6,8 +6,8 @@ import time
 import json
 import threading
 
+from typing import NoReturn
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from typing import Optional
 
 # site
 from typex import once
@@ -20,13 +20,13 @@ from typeins import GameState, GameStatePlayerWeapon
 
 
 class GSI (object):
-    def __init__(self):
+    def __init__(self) -> None:
         self._lock = threading.RLock()
         self.state = GameState()
         self.__service: HTTPServer = None
         self.__thread: threading.Thread = None
 
-    def __run(self):
+    def __run(self) -> NoReturn:
         try:
             self.__service = HTTPServer(("localhost", core.config.gsi_port), GSIHTTPRequestHandler)
             core.event.emit(constants.event.GSI_START)
@@ -62,7 +62,7 @@ class GSI (object):
 
             setattr(dataclass, key, value)
 
-    def update(self, data: dict):
+    def update(self, data: dict) -> None:
         self.dataclass_update(self.state, data)
         core.event.emit(constants.event.GSI_UPDATE)
 
@@ -100,7 +100,7 @@ class GSIHTTPRequestHandler (BaseHTTPRequestHandler):
 
     def log_message(self, *_): ...
 
-    def do_POST(self):
+    def do_POST(self) -> None:
         content_length = int(self.headers["Content-Length"])
         post_data = self.rfile.read(content_length)
 

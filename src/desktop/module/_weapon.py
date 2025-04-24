@@ -16,7 +16,6 @@ from basic import cwd
 from typeins import WeaponOffsets
 
 
-
 @dataclass
 class LastConfig (object):
     recoil_sensitivity: float = 0.0

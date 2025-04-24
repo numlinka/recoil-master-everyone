@@ -51,6 +51,9 @@ class GSI (object):
                 for _, weapon in self.state.player.weapons.items():
                     if weapon.state != constants.gsi.HOLSTERED:
                         self.state.player.active_weapon = weapon
+                        break
+                else:
+                    self.state.player.active_weapon = GameStatePlayerWeapon()
                 continue
 
             elif isinstance(value, dict):

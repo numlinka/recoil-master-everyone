@@ -57,17 +57,17 @@ class Weapon (Singleton):
 
         self.weapon_checkbutton.clear()
 
-        for name in weapon_list:
+        for index, name in enumerate(weapon_list):
             self.weapon_checkbutton[name] = ttkbootstrap.Checkbutton(
                 self.frame,
                 text=i18n.ctrl.translation(f"ITEM.{name}"),
+                cursor="hand2",
                 variable=self.weapon_variable[name],
                 onvalue=True,
                 offvalue=False,
                 bootstyle=(SQUARE, TOGGLE)
             )
-            self.weapon_checkbutton[name].pack(fill=X, padx=10, pady=5)
-
+            self.weapon_checkbutton[name].grid(row=index//3, column=index%3, sticky=W, padx=(5, 20), pady=5)
 
     def bin_weapon_update(self, *_):
         effective_weapons_name = []
@@ -77,7 +77,6 @@ class Weapon (Singleton):
 
         core.config.effective_weapons.set(";".join(effective_weapons_name))
         ... # TODO
-
 
 
 def initialize_final():

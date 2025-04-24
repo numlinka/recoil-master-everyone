@@ -25,7 +25,7 @@ class Condition (object):
     def __init__(self):
         self._lock = threading.RLock()
         self._last_condition = False
-        self._last_active = ""
+        self._active_window = ""
         self._effective_weapons = []
         self._invalid_weapons = []
         self._last_taracks = ""
@@ -42,49 +42,52 @@ class Condition (object):
             except Exception as _:
                 ...
 
-    def new_condition(self):
+    def set_effective_weapons(self, weapons: list[str]):
         with self._lock:
-            # 焦点程序不是 CS2
-            if self._last_active != constants.CS2_EXE:
+            self._effective_weapons = weapons
+
+    def new_condition(self):
+        state = module.gsi.state
+
+        with self._lock:
+            if self._active_window != constants.CS2_EXE:
                 return False
 
-        # 焦点玩家不是自己
-        if module.gsi.state.player.steamid != module.gsi.state.provider.steamid:
-            return False
-
-        # 武器不在有效列表中
-        if module.gsi.state.player.active_weapon.name not in self._effective_weapons:
-            weapon_name = module.gsi.state.player.active_weapon.name
-            if module.weapon.load(weapon_name):
-                self._effective_weapons.append(weapon_name)
-
-            else:
+            if state.player.active_weapon.name not in self._effective_weapons:
                 return False
 
-        # 武器在装填中
-        if module.gsi.state.player.active_weapon.state == constants.gsi.RELOADING:
+            if state.player.active_weapon.name in self._invalid_weapons:
+                return False
+
+        if state.player.steamid != state.provider.steamid:
             return False
 
-        # 武器没子弹
-        if module.gsi.state.player.active_weapon.ammo_clip == 0:
+        if state.player.active_weapon.state == constants.gsi.RELOADING:
             return False
 
-        weapon_name = module.gsi.state.player.active_weapon.name
+        if state.player.active_weapon.ammo_clip == 0:
+            return False
+
+        weapon_name = state.player.active_weapon.name
         module.weapon.load(weapon_name)
         mouse_tracks = module.weapon.mouse_tracks
-        if mouse_tracks != self._last_taracks:
-            self._last_taracks = mouse_tracks
-            assistance.command.tracks(mouse_tracks)
 
+        with self._lock:
+            if mouse_tracks == self._last_taracks:
+                return True
+
+            self._last_taracks = mouse_tracks
+
+        assistance.command.tracks(mouse_tracks)
         return True
 
     def active_update(self, process_name: str):
         with self._lock:
-            if process_name != self._last_active:
-                self._last_active = process_name
+            if process_name != self._active_window:
+                self._active_window = process_name
                 self.status_update()
 
-            self._last_active = process_name
+            self._active_window = process_name
 
     def status_update(self):
         condition = self.new_condition()

@@ -13,6 +13,7 @@ from ttkbootstrap.constants import *
 
 # local
 import core
+import module
 import interface
 from basic import i18n, cwd
 
@@ -69,6 +70,8 @@ class Weapon (Singleton):
             )
             self.weapon_checkbutton[name].grid(row=index//3, column=index%3, sticky=W, padx=(5, 20), pady=5)
 
+        self.bin_weapon_update()
+
     def bin_weapon_update(self, *_):
         effective_weapons_name = []
         for name, variable in self.weapon_variable.items():
@@ -76,7 +79,7 @@ class Weapon (Singleton):
                 effective_weapons_name.append(name)
 
         core.config.effective_weapons.set(";".join(effective_weapons_name))
-        ... # TODO
+        module.condition.set_effective_weapons(effective_weapons_name)
 
 
 def initialize_final():

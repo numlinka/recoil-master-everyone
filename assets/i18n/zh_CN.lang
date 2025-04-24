@@ -43,6 +43,8 @@ recoil_smoothing = 鼠标平滑系数
 recoil_leading_delay = 前导延迟占比
 recoil_duty_cycle = 鼠标操作占空比
 
+weapon = 武器
+
 licenses = 许可证
 
 

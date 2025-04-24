@@ -43,6 +43,8 @@ recoil_smoothing = Smoothing Coefficient
 recoil_leading_delay = Leading Delay
 recoil_duty_cycle = Duty Cycle
 
+weapon = Weapon
+
 licenses = Licenses
 
 

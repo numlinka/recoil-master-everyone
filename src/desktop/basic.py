@@ -56,6 +56,8 @@ class _LocalI18n (i18nco.Internationalization):
         recoil_leading_delay: str
         recoil_duty_cycle: str
 
+        weapon: str
+
         licenses: str
 
     class ITEM (object):

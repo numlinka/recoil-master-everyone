@@ -36,6 +36,8 @@ class LocalConfiguration (Configuration):
     recoil_leading_delay = setting(float, 0.2, NumericalRange(0.0, 0.5))
     recoil_duty_cycle = setting(float, 0.5, NumericalRange(0.0, 1.0))
 
+    effective_weapons = setting(str)
+
 
 def save(*_):
     try_exec(exec_item(core.config.ctrl.save_json, cwd.configuration, base64=True))

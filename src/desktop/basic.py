@@ -48,6 +48,8 @@ class _LocalI18n (i18nco.Internationalization):
         GSI_game_cfg_success: str
         GSI_game_cfg_success_desc: str
 
+        hud: str
+
         recoil: str
         recoil_sensitivity: str
         recoil_horizontal: str

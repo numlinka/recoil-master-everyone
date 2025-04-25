@@ -35,6 +35,8 @@ GSI_game_cfg_error_desc = 请确保你正确启动了 CS2 并且没有其它干�
 GSI_game_cfg_success = 配置文件写入成功!
 GSI_game_cfg_success_desc = 我们已成功写入配置文件。为确保其生效，你需要重启游戏。
 
+hud = 抬头显示
+
 recoil = 压枪
 recoil_sensitivity = 游戏鼠标灵敏度
 recoil_horizontal = 水平修正幅度
@@ -85,8 +87,8 @@ weapon_ssg08 = SSG 08
 weapon_awp = AWP
 weapon_g3sg1 = G3SG1
 weapon_scar20 = SCAR-20
-weapon_knife = 警刀
-weapon_knife_t = 匪刀
+weapon_knife = 刀
+weapon_knife_t = 刀
 weapon_flashbang = 闪光弹
 weapon_hegrenade = 高爆手榴弹
 weapon_smokegrenade = 烟雾弹

@@ -49,6 +49,11 @@ class _LocalI18n (i18nco.Internationalization):
         GSI_game_cfg_success_desc: str
 
         hud: str
+        hud_enable: str
+        hud_weapon_sort: str
+        hud_active_first: str
+        hud_active_only: str
+        hud_gun_only: str
 
         recoil: str
         recoil_sensitivity: str

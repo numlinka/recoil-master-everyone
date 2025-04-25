@@ -38,6 +38,12 @@ class LocalConfiguration (Configuration):
 
     effective_weapons = setting(str)
 
+    hud_enable = setting(int, 1, NumericalRange(0, 1))
+    hud_weapon_sort = setting(int, 1, NumericalRange(0, 1))
+    hud_active_first = setting(int, 1, NumericalRange(0, 1))
+    hud_active_only = setting(int, 0, NumericalRange(0, 1))
+    hud_gun_only = setting(int, 1, NumericalRange(0, 1))
+
 
 def save(*_):
     try_exec(exec_item(core.config.ctrl.save_json, cwd.configuration, base64=True))

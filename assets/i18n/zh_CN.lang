@@ -12,7 +12,7 @@ exit = 退出程序
 
 #define superiors UI
 
-GSI = GSI
+GSI = 状态集成
 GSI_desc = 游戏状态集成
 GSI_port = 监听端口
 GSI_timeout = 状态更新的最长时间
@@ -36,6 +36,11 @@ GSI_game_cfg_success = 配置文件写入成功!
 GSI_game_cfg_success_desc = 我们已成功写入配置文件。为确保其生效，你需要重启游戏。
 
 hud = 抬头显示
+hud_enable = 启用抬头显示
+hud_weapon_sort = 武器排序
+hud_active_first = 手持武器优先
+hud_active_only = 仅显示手持武器
+hud_gun_only = 仅显示枪械武器
 
 recoil = 压枪
 recoil_sensitivity = 游戏鼠标灵敏度

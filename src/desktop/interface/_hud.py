@@ -2,9 +2,6 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
 # std
-import os
-import tkinter
-
 from dataclasses import dataclass, field
 
 # size
@@ -19,7 +16,7 @@ import module
 import interface
 import constants
 
-from basic import i18n, cwd
+from basic import i18n
 from typeins import GameStatePlayerWeapon
 
 
@@ -31,46 +28,38 @@ class HUDWeapon:
     hud_weapon: ttkbootstrap.Label = field(default=None)
 
 
+@dataclass
+class SwitchWidget:
+    variable: ttkbootstrap.BooleanVar = field(default=None)
+    checkbutton: ttkbootstrap.Checkbutton = field(default=None)
+
+
 class HUD (Singleton):
     def __init__(self):
         self.frame = ttkbootstrap.Frame(interface.notebook)
         interface.notebook.add(self.frame, text=i18n.UI.hud)
         self.huds: list[HUDWeapon] = []
+        self.switches: dict[str, SwitchWidget] = {}
         self.last_amount = 0
         self.build()
         self.build_hud_window()
 
     @once
     def build(self):
-        self.v_hud_enable = ttkbootstrap.BooleanVar()
-        self.v_hud_weapon_sort = ttkbootstrap.BooleanVar()
-        self.v_hud_active_first = ttkbootstrap.BooleanVar()
-        self.v_hud_active_only = ttkbootstrap.BooleanVar()
-        self.v_hud_gun_only = ttkbootstrap.BooleanVar()
-
-        self.checkbutton_enable = ttkbootstrap.Checkbutton(self.frame, text=i18n.UI.hud_enable, variable=self.v_hud_enable, bootstyle=(SQUARE, TOGGLE), cursor="hand2",)
-        self.checkbutton_weapon_sort = ttkbootstrap.Checkbutton(self.frame, text=i18n.UI.hud_weapon_sort, variable=self.v_hud_weapon_sort, bootstyle=(SQUARE, TOGGLE), cursor="hand2",)
-        self.checkbutton_active_first = ttkbootstrap.Checkbutton(self.frame, text=i18n.UI.hud_active_first, variable=self.v_hud_active_first, bootstyle=(SQUARE, TOGGLE), cursor="hand2",)
-        self.checkbutton_active_only = ttkbootstrap.Checkbutton(self.frame, text=i18n.UI.hud_active_only, variable=self.v_hud_active_only, bootstyle=(SQUARE, TOGGLE), cursor="hand2",)
-        self.checkbutton_gun_only = ttkbootstrap.Checkbutton(self.frame, text=i18n.UI.hud_gun_only, variable=self.v_hud_gun_only, bootstyle=(SQUARE, TOGGLE), cursor="hand2",)
-
-        self.checkbutton_enable.grid(row=0, column=0, padx=4, pady=(4, 4), sticky=W)
-        self.checkbutton_weapon_sort.grid(row=1, column=0, padx=4, pady=(0, 4), sticky=W)
-        self.checkbutton_active_first.grid(row=2, column=0, padx=4, pady=(0, 4), sticky=W)
-        self.checkbutton_active_only.grid(row=3, column=0, padx=4, pady=(0, 4), sticky=W)
-        self.checkbutton_gun_only.grid(row=4, column=0, padx=4, pady=(0, 4), sticky=W)
-
-        self.v_hud_enable.set(core.config.hud_enable)
-        self.v_hud_weapon_sort.set(core.config.hud_weapon_sort)
-        self.v_hud_active_first.set(core.config.hud_active_first)
-        self.v_hud_active_only.set(core.config.hud_active_only)
-        self.v_hud_gun_only.set(core.config.hud_gun_only)
-
-        self.v_hud_enable.trace_add("write", self.v_hud_enable_callback)
-        self.v_hud_weapon_sort.trace_add("write", self.v_hud_weapon_sort_callback)
-        self.v_hud_active_first.trace_add("write", self.v_hud_active_first_callback)
-        self.v_hud_active_only.trace_add("write", self.v_hud_active_only_callback)
-        self.v_hud_gun_only.trace_add("write", self.v_hud_gun_only_callback)
+        settings = ["hud_enable", "hud_weapon_sort", "hud_active_first", "hud_active_only", "hud_gun_only"]
+        for index, name in enumerate(settings):
+            variable = ttkbootstrap.BooleanVar()
+            checkbutton = ttkbootstrap.Checkbutton(
+                self.frame,
+                text=i18n.UI[name],
+                variable=variable,
+                bootstyle=(SQUARE, TOGGLE),
+                cursor="hand2"
+            )
+            self.switches[name] = SwitchWidget(variable, checkbutton)
+            checkbutton.grid(row=index, column=0, padx=5, pady=(0 if index != 0 else 5, 5), sticky=W)
+            variable.set(core.config.ctrl.get(name))
+            variable.trace_add("write", self.bool_buttons_update)
 
     @once
     def build_hud_window(self):
@@ -97,20 +86,9 @@ class HUD (Singleton):
             hud_weapon = ttkbootstrap.Label(self.hud_window, textvariable=v_weapon, background="White", foreground="Black")
             self.huds.append(HUDWeapon(v_ammo, v_weapon, hud_ammo, hud_weapon))
 
-    def v_hud_enable_callback(self, *_) -> None:
-        core.config.hud_enable = self.v_hud_enable.get()
-
-    def v_hud_active_first_callback(self, *_)-> None:
-        core.config.hud_active_first = self.v_hud_active_first.get()
-
-    def v_hud_weapon_sort_callback(self, *_) -> None:
-        core.config.hud_weapon_sort = self.v_hud_weapon_sort.get()
-
-    def v_hud_gun_only_callback(self, *_) -> None:
-        core.config.hud_gun_only = self.v_hud_gun_only.get()
-
-    def v_hud_active_only_callback(self, *_) -> None:
-        core.config.hud_active_only = self.v_hud_active_only.get()
+    def bool_buttons_update(self, *_) -> None:
+        for name, switchwidget in self.switches.items():
+            core.config.ctrl.set(name, switchwidget.variable.get())
 
     def __weapon_sort__(self, weapon: GameStatePlayerWeapon) -> int:
         match weapon.type:
@@ -170,7 +148,7 @@ class HUD (Singleton):
                 self.huds[i].hud_weapon.grid_forget()
 
         for i, weapon in enumerate(now_weapons[::-1]):
-            weapon_name = i18n.ctrl.translation(f"ITEM.{weapon.name}") if weapon.name else "ITEM"
+            weapon_name = i18n.ITEM[weapon.name] if weapon.name else "ITEM"
             self.huds[i].v_weapon.set(f" {weapon_name} ")
             self.huds[i].v_ammo.set(f" {weapon.ammo_clip:>3} | {weapon.ammo_reserve:>3} ")
 

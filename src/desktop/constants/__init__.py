@@ -4,6 +4,7 @@
 from . import event
 from . import gsi
 from . import lt
+from . import media
 
 
 CS2_EXE = "cs2.exe"

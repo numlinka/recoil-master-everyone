@@ -13,6 +13,7 @@ class _CWD (Directory):
     class assets (Directory):
         i18n = "i18n"
         weapons = "weapons"
+        favicon = "favicon.ico"
 
     logs = "logs"
     configuration = FilePath("configuration")

@@ -10,6 +10,7 @@ from ttkbootstrap.constants import *
 # local
 import env
 import core
+import constants
 
 # internal
 from . import _slogan
@@ -41,6 +42,7 @@ def initialize_first():
     mainwindow = ttkbootstrap.Window()
     mainwindow.title(env.MAIN_TITLE)
     methods.load_mainwindow_state()
+    methods.set_window_icon_from_base64(mainwindow, constants.media.favicon)
 
     notebook = ttkbootstrap.Notebook(mainwindow)
     notebook.pack(fill=BOTH, expand=True, padx=5, pady=5)

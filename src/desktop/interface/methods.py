@@ -1,10 +1,18 @@
 # Licensed under the GNU General Public License v3.0, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
+# std
+import base64
 import tkinter
+from io import BytesIO
 
+# site
+from PIL import Image, ImageTk
+
+# local
 import core
 import interface
+from basic import cwd
 
 
 def save_mainwindow_state(*_) -> None:
@@ -40,3 +48,17 @@ def center_window_to_screen(window: tkinter.Misc, width: int = None, height: int
         return
 
     window.geometry(f"{width}x{height}+{x}+{y}")
+
+
+def set_window_icon_from_base64(window: tkinter.Wm, base64_string: str) -> bool:
+    try:
+        image_data = base64.b64decode(base64_string)
+        image_file_like = BytesIO(image_data)
+        icon_image = Image.open(image_file_like)
+        tk_icon = ImageTk.PhotoImage(icon_image)
+        window.iconphoto(False, tk_icon)
+        window.iconphoto(True, tk_icon)
+        return True
+
+    except Exception as _:
+        return False

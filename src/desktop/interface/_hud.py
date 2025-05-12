@@ -2,6 +2,7 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
 # std
+from tkinter import TclError
 from dataclasses import dataclass, field
 
 # size
@@ -9,6 +10,7 @@ import ttkbootstrap
 
 from typex import Singleton, once
 from ttkbootstrap.constants import *
+from ezudesign.configuration import ConfigurationBaseException
 
 # local
 import core
@@ -29,6 +31,13 @@ class HUDWeapon:
 
 
 @dataclass
+class NumberWidget:
+    variable: ttkbootstrap.IntVar = field(default=None)
+    label: ttkbootstrap.Label = field(default=None)
+    spinbox: ttkbootstrap.Spinbox = field(default=None)
+
+
+@dataclass
 class SwitchWidget:
     variable: ttkbootstrap.BooleanVar = field(default=None)
     checkbutton: ttkbootstrap.Checkbutton = field(default=None)
@@ -39,15 +48,47 @@ class HUD (Singleton):
         self.frame = ttkbootstrap.Frame(interface.notebook)
         interface.notebook.add(self.frame, text=i18n.UI.hud)
         self.huds: list[HUDWeapon] = []
-        self.switches: dict[str, SwitchWidget] = {}
+        self.number_settings: dict[str, NumberWidget] = {}
+        self.switch_settings: dict[str, SwitchWidget] = {}
         self.last_amount = 0
         self.build()
         self.build_hud_window()
 
     @once
     def build(self):
-        settings = ["hud_enable", "hud_weapon_sort", "hud_active_first", "hud_active_only", "hud_gun_only"]
-        for index, name in enumerate(settings):
+        number_settings = [
+            core.config.hud_width.name,
+            core.config.hud_height.name,
+        ]
+
+        for index, name in enumerate(number_settings):
+            variable = ttkbootstrap.IntVar()
+            label = ttkbootstrap.Label(self.frame, text=i18n.UI[name])
+            spinbox = ttkbootstrap.Spinbox(
+                self.frame,
+                from_=core.config[name].ranges.min,
+                to=core.config[name].ranges.max,
+                textvariable=variable,
+                width=8,
+                justify=RIGHT
+            )
+            self.number_settings[name] = NumberWidget(variable, label, spinbox)
+            label.grid(row=index, column=0, padx=5, pady=(0 if index != 0 else 5, 5), sticky=W)
+            spinbox.grid(row=index, column=1, padx=5, pady=(0 if index != 0 else 5, 5), sticky=W)
+            variable.set(core.config[name])
+            variable.trace_add("write", self.number_settings_update)
+
+        row_plus = index + 1
+
+        switch_settings = [
+            core.config.hud_enable.name,
+            core.config.hud_weapon_sort.name,
+            core.config.hud_active_first.name,
+            core.config.hud_active_only.name,
+            core.config.hud_gun_only.name
+        ]
+
+        for index, name in enumerate(switch_settings):
             variable = ttkbootstrap.BooleanVar()
             checkbutton = ttkbootstrap.Checkbutton(
                 self.frame,
@@ -56,10 +97,10 @@ class HUD (Singleton):
                 bootstyle=(SQUARE, TOGGLE),
                 cursor="hand2"
             )
-            self.switches[name] = SwitchWidget(variable, checkbutton)
-            checkbutton.grid(row=index, column=0, padx=5, pady=(0 if index != 0 else 5, 5), sticky=W)
-            variable.set(core.config.ctrl.get(name))
-            variable.trace_add("write", self.bool_buttons_update)
+            self.switch_settings[name] = SwitchWidget(variable, checkbutton)
+            checkbutton.grid(row=row_plus+index, column=0, padx=5, pady=(5, 5), sticky=W, columnspan=2)
+            variable.set(core.config[name])
+            variable.trace_add("write", self.switch_settings_update)
 
     @once
     def build_hud_window(self):
@@ -86,11 +127,22 @@ class HUD (Singleton):
             hud_weapon = ttkbootstrap.Label(self.hud_window, textvariable=v_weapon, background="White", foreground="Black")
             self.huds.append(HUDWeapon(v_ammo, v_weapon, hud_ammo, hud_weapon))
 
-    def bool_buttons_update(self, *_) -> None:
-        for name, switchwidget in self.switches.items():
-            core.config.ctrl.set(name, switchwidget.variable.get())
+    def number_settings_update(self, *_) -> None:
+        for name, numberwidget in self.number_settings.items():
+            try:
+                core.config[name] = numberwidget.variable.get()
+            except (ConfigurationBaseException, TclError) as e:
+                numberwidget.spinbox.configure(bootstyle=DANGER)
+            else:
+                numberwidget.spinbox.configure(bootstyle=NORMAL)
 
-    def __weapon_sort__(self, weapon: GameStatePlayerWeapon) -> int:
+        interface.methods.center_window_to_screen(self.hud_window, core.config.hud_width, core.config.hud_height, True)
+
+    def switch_settings_update(self, *_) -> None:
+        for name, switchwidget in self.switch_settings.items():
+            core.config[name] = switchwidget.variable.get()
+
+    def _weapon_sort_key(self, weapon: GameStatePlayerWeapon) -> int:
         match weapon.type:
             case "Rifle":
                 return 0
@@ -131,7 +183,7 @@ class HUD (Singleton):
             ]
 
             if core.config.hud_weapon_sort:
-                now_weapons.sort(key=self.__weapon_sort__)
+                now_weapons.sort(key=self._weapon_sort_key)
 
             if core.config.hud_active_first:
                 now_weapons.insert(0, active_weapon)

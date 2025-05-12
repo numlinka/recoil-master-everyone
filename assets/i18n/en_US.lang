@@ -36,6 +36,8 @@ GSI_game_cfg_success = Configuration file written successfully!
 GSI_game_cfg_success_desc = We have successfully written the configuration file. To ensure it takes effect, you need to restart the game.
 
 hud = HUD
+hud_width = HUD Window Width
+hud_height = HUD Window Height
 hud_enable = Enable
 hud_weapon_sort = Weapon Sort
 hud_active_first = Active First

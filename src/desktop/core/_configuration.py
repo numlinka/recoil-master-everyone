@@ -38,6 +38,8 @@ class LocalConfiguration (Configuration):
 
     effective_weapons = setting(str)
 
+    hud_width = setting(int, 600, NumericalRange(200, 16384))
+    hud_height = setting(int, 400, NumericalRange(200, 16384))
     hud_enable = setting(int, 1, NumericalRange(0, 1))
     hud_weapon_sort = setting(int, 1, NumericalRange(0, 1))
     hud_active_first = setting(int, 1, NumericalRange(0, 1))

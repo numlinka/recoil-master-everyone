@@ -82,6 +82,6 @@ def run() -> None:
     log.info("recoil-master-everyone")
     log.unpause()
     initialize()
-    event.emit(constants.event.ENTER_MAINLOOP)
+    interface.mainwindow.after(0, lambda *_: event.emit(constants.event.ENTER_MAINLOOP))
     interface.mainwindow.mainloop()
-    raise SystemExit
+    raise SystemExit("The main thread exits normally.")

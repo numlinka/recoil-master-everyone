@@ -54,6 +54,12 @@ recoil_duty_cycle = 鼠标操作占空比
 
 weapon = 武器
 
+anti = 急停
+anti_ad_ghosting = AD 无冲突
+anti_ad_ghosting_desc = AD 不会同时按下
+anti_ws_ghosting = WS 无冲突
+anti_ws_ghosting_desc = WS 不会同时按下
+
 licenses = 许可证
 
 

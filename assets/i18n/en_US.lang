@@ -54,6 +54,12 @@ recoil_duty_cycle = Duty Cycle
 
 weapon = Weapon
 
+anti = Counter-Stopping
+anti_ad_ghosting = AD Anti-Ghosting
+anti_ad_ghosting_desc = No Key Ghosting for A and D
+anti_ws_ghosting = WS Anti-Ghosting
+anti_ws_ghosting_desc = No Key Ghosting for W and S
+
 licenses = Licenses
 
 

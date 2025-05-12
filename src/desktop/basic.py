@@ -67,6 +67,10 @@ class _LocalI18n (i18nco.Internationalization):
 
         weapon: str
 
+        anti: str
+        anti_ad_ghosting: str
+        anti_ws_ghosting: str
+
         licenses: str
 
     class ITEM (object):

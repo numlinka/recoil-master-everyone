@@ -8,9 +8,10 @@ from typex import once
 from . import _gsi
 from . import _weapon
 from . import _condition
+from . import anti
 
 
-_activitys = [_gsi, _condition]
+_activitys = [_gsi, _condition, anti]
 
 gsi: _gsi.GSI
 weapon: _weapon.Weapon

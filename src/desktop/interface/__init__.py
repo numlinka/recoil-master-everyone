@@ -17,6 +17,7 @@ from . import _gsi
 from . import _hud
 from . import _recoil
 from . import _weapon
+from . import _anti
 from . import _license
 from . import methods
 
@@ -29,6 +30,7 @@ gsi: _gsi.GSI
 hud: _hud.HUD
 recoil: _recoil.Recoil
 weapon: _weapon.Weapon
+anti: _anti.Anti
 licenses: _license.License
 
 
@@ -50,12 +52,13 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global slogan, gsi, hud, recoil, weapon, licenses
+    global slogan, gsi, hud, recoil, weapon, anti, licenses
     slogan = _slogan.Slogan()
     gsi = _gsi.GSI()
     hud = _hud.HUD()
     recoil = _recoil.Recoil()
     weapon = _weapon.Weapon()
+    anti = _anti.Anti()
     licenses = _license.License()
 
     for activity in _activitys:

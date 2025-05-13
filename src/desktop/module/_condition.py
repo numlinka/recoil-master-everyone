@@ -17,7 +17,6 @@ from  typex import once
 import core
 import module
 import constants
-import assistance
 
 
 class Condition (object):
@@ -77,7 +76,7 @@ class Condition (object):
 
             self._last_taracks = mouse_tracks
 
-        assistance.command.tracks(mouse_tracks)
+        module.assistance.command.tracks(mouse_tracks)
         return True
 
     def active_update(self, process_name: str) -> None:
@@ -95,7 +94,7 @@ class Condition (object):
                 return
 
             self._last_condition = condition
-        assistance.command.condition(condition)
+        module.assistance.command.condition(condition)
         core.event.emit(constants.event.CONDITION_UPDATE)
 
     @once

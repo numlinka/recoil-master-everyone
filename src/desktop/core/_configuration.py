@@ -56,4 +56,4 @@ def save(*_):
 
 @once
 def initialize_final():
-    core.action.exit.add_task(save, 8000)
+    core.action.exit.add_task(save, 9000)

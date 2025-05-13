@@ -15,7 +15,6 @@ from ezudesign.utils import try_exec, exec_item
 import module
 import constants
 import interface
-import assistance
 
 from basic import log, cwd, i18n
 
@@ -25,7 +24,7 @@ from . import _convert
 from . import _configuration
 
 
-_activitys = [_configuration, _convert, action, module, interface, assistance]
+_activitys = [_configuration, _convert, action, module, interface]
 
 config: _configuration.LocalConfiguration
 event: ezudesign.eventhub.EventHub

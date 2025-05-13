@@ -15,6 +15,7 @@ class _CWD (Directory):
         weapons = "weapons"
         favicon = "favicon.ico"
 
+    assistance = "assistance"
     logs = "logs"
     configuration = FilePath("configuration")
 

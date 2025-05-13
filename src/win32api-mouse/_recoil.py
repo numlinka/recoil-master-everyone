@@ -1,10 +1,10 @@
 # Licensed under the GNU General Public License v3.0, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 # recoil-master-everyone Copyright (C) 2024 numlinka.
+# win32api-mouse
 
 # std
 import time
 import threading
-
 from typing import NoReturn, Iterable
 
 # site
@@ -68,9 +68,6 @@ class Recoil (object):
         with self._lock:
             self._tracks = tracks
             self._length = length
-
-    def initialize(self) -> None:
-        ...
 
     def start(self) -> None:
         self.thread.start()

@@ -27,28 +27,28 @@ class _LocalI18n (i18nco.Internationalization):
         exit: str
 
     class UI (object):
-        GSI: str
-        GSI_depict: str
-        GSI_port: str
-        GSI_timeout: str
-        GSI_buffer: str
-        GSI_throttle: str
-        GSI_heartbeat: str
-        GSI_start_service: str
-        GSI_apply_to_game: str
-        GSI_port_error: str
-        GSI_port_error_desc: str
-        GSI_value_error: str
-        GSI_value_error_desc: str
-        GSI_service_running: str
-        GSI_service_stop: str
-        GSI_service_error: str
-        GSI_game_not_run: str
-        GSI_game_not_run_desc: str
-        GSI_game_cfg_error: str
-        GSI_game_cfg_error_desc: str
-        GSI_game_cfg_success: str
-        GSI_game_cfg_success_desc: str
+        gsi: str
+        gsi_depict: str
+        gsi_port: str
+        gsi_timeout: str
+        gsi_buffer: str
+        gsi_throttle: str
+        gsi_heartbeat: str
+        gsi_start_service: str
+        gsi_apply_to_game: str
+        gsi_port_error: str
+        gsi_port_error_desc: str
+        gsi_value_error: str
+        gsi_value_error_desc: str
+        gsi_service_running: str
+        gsi_service_stop: str
+        gsi_service_error: str
+        gsi_game_not_run: str
+        gsi_game_not_run_desc: str
+        gsi_game_cfg_error: str
+        gsi_game_cfg_error_desc: str
+        gsi_game_cfg_success: str
+        gsi_game_cfg_success_desc: str
 
         hud: str
         hud_alpha: str

@@ -12,6 +12,7 @@ from typex import once, Singleton
 
 # local
 import core
+import constants
 from basic import cwd
 
 
@@ -64,5 +65,5 @@ class Command (object):
 @once
 def initialize_final() -> None:
     assistance = Assistance()
-    assistance.run()
+    core.event.subscribe(constants.event.ENTER_MAINLOOP, assistance.run, async_=True)
     core.action.exit.add_task(assistance.stop, 8000)

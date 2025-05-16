@@ -61,6 +61,7 @@ class _LocalI18n (i18nco.Internationalization):
         hud_gun_only: str
 
         recoil: str
+        recoil_track: str
         recoil_sensitivity: str
         recoil_horizontal: str
         recoil_vertical: str

@@ -46,6 +46,7 @@ hud_active_only = 仅显示手持武器
 hud_gun_only = 仅显示枪械武器
 
 recoil = 压枪
+recoil_track = 鼠标轨迹
 recoil_sensitivity = 游戏鼠标灵敏度
 recoil_horizontal = 水平修正幅度
 recoil_vertical = 垂直修正幅度

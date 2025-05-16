@@ -3,7 +3,6 @@
 
 # std
 import os
-import tkinter
 
 # size
 import ttkbootstrap
@@ -14,14 +13,13 @@ from ttkbootstrap.constants import *
 # local
 import core
 import module
-import interface
 from basic import i18n, cwd
 
 
 class Weapon (Singleton):
-    def __init__(self):
-        self.frame = ttkbootstrap.Frame(interface.notebook)
-        interface.notebook.add(self.frame, text=i18n.UI.weapon)
+    def __init__(self, notebook: ttkbootstrap.Notebook):
+        self.frame = ttkbootstrap.Frame(notebook)
+        notebook.add(self.frame, text=i18n.UI.weapon)
         self.weapon_variable: dict[str, ttkbootstrap.BooleanVar] = {}
         self.weapon_checkbutton: dict[str, ttkbootstrap.Checkbutton] = {}
         self.build()

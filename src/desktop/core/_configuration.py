@@ -23,18 +23,18 @@ class LocalConfiguration (Configuration):
     window_y = setting(int, -1)
 
     gsi_port = setting(int, 25463, NumericalRange(1, 65535))
-    gsi_timeout = setting(float, 5.0, NumericalRange(0.1, 60.0))
-    gsi_buffer = setting(float, 0.1, NumericalRange(0.1, 10.0))
-    gsi_throttle = setting(float, 0.5, NumericalRange(0.1, 10.0))
-    gsi_heartbeat = setting(float, 60.0, NumericalRange(0.1, 360.0))
+    gsi_timeout = setting(float, 5.0, NumericalRange(0.1, 60.0, 1))
+    gsi_buffer = setting(float, 0.1, NumericalRange(0.1, 10.0, 1))
+    gsi_throttle = setting(float, 0.5, NumericalRange(0.1, 10.0, 1))
+    gsi_heartbeat = setting(float, 60.0, NumericalRange(0.1, 360.0, 1))
 
     recoil_enable = setting(int, 0, NumericalRange(0, 1))
-    recoil_sensitivity = setting(float, 1.0, NumericalRange(0.1, 8.0))
-    recoil_horizontal = setting(float, 1.0, NumericalRange(0.0, 2.0)) 
-    recoil_vertical = setting(float, 1.0, NumericalRange(0.0, 2.0))
+    recoil_sensitivity = setting(float, 1.0, NumericalRange(0.1, 8.0, 2))
+    recoil_horizontal = setting(float, 1.0, NumericalRange(0.0, 2.0, 2)) 
+    recoil_vertical = setting(float, 1.0, NumericalRange(0.0, 2.0, 2))
     recoil_smoothing = setting(int, 10, NumericalRange(1, 100))
-    recoil_leading_delay = setting(float, 0.2, NumericalRange(0.0, 0.5))
-    recoil_duty_cycle = setting(float, 0.5, NumericalRange(0.0, 1.0))
+    recoil_leading_delay = setting(float, 0.2, NumericalRange(0.0, 0.5, 2))
+    recoil_duty_cycle = setting(float, 0.5, NumericalRange(0.0, 1.0, 2))
 
     effective_weapons = setting(str)
 

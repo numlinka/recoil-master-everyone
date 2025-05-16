@@ -17,9 +17,9 @@ from basic import i18n
 
 
 class Recoil (object):
-    def __init__ (self):
-        self.frame = ttkbootstrap.Frame(interface.notebook)
-        interface.notebook.add(self.frame, text=i18n.UI.recoil)
+    def __init__(self, notebook: ttkbootstrap.Notebook):
+        self.frame = ttkbootstrap.Frame(notebook)
+        notebook.add(self.frame, text=i18n.UI.recoil_track)
         self.build()
 
     @once

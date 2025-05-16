@@ -46,6 +46,7 @@ hud_active_only = Active Only
 hud_gun_only = Weapon Only
 
 recoil = Recoil
+recoil_track = Mouse Track
 recoil_sensitivity = Game Mouse Sensitivity
 recoil_horizontal = Horizontal percentage
 recoil_vertical = Vertical percentage

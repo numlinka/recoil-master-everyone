@@ -57,8 +57,9 @@ class HUD (Singleton):
     @once
     def build(self):
         number_settings = [
+            core.config.hud_alpha.name,
             core.config.hud_width.name,
-            core.config.hud_height.name,
+            core.config.hud_height.name
         ]
 
         for index, name in enumerate(number_settings):
@@ -109,7 +110,7 @@ class HUD (Singleton):
         self.hud_window.resizable(width=False, height=False)
         self.hud_window.configure(bg="grey")
         self.hud_window.attributes("-transparentcolor", "grey")
-        self.hud_window.attributes("-alpha", 0.5)
+        self.hud_window.attributes("-alpha", core.config.hud_alpha / 100)
         self.hud_window.wm_attributes("-topmost", True)
 
         interface.methods.center_window_to_screen(self.hud_window, 600, 400, True)
@@ -131,12 +132,13 @@ class HUD (Singleton):
         for name, numberwidget in self.number_settings.items():
             try:
                 core.config[name] = numberwidget.variable.get()
-            except (ConfigurationBaseException, TclError) as e:
+            except (ConfigurationBaseException, TclError) as _:
                 numberwidget.spinbox.configure(bootstyle=DANGER)
             else:
                 numberwidget.spinbox.configure(bootstyle=NORMAL)
 
         interface.methods.center_window_to_screen(self.hud_window, core.config.hud_width, core.config.hud_height, True)
+        self.hud_window.attributes("-alpha", core.config.hud_alpha / 100)
 
     def switch_settings_update(self, *_) -> None:
         for name, switchwidget in self.switch_settings.items():

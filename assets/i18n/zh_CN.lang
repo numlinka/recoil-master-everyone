@@ -36,6 +36,7 @@ GSI_game_cfg_success = 配置文件写入成功!
 GSI_game_cfg_success_desc = 我们已成功写入配置文件。为确保其生效，你需要重启游戏。
 
 hud = 抬头显示
+hud_alpha = HUD 透明度
 hud_width = HUD 窗口宽度
 hud_height = HUD 窗口高度
 hud_enable = 启用抬头显示

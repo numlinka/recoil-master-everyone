@@ -51,6 +51,7 @@ class _LocalI18n (i18nco.Internationalization):
         GSI_game_cfg_success_desc: str
 
         hud: str
+        hud_alpha: str
         hud_width: str
         hud_height: str
         hud_enable: str

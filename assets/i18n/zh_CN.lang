@@ -12,6 +12,8 @@ exit = 退出程序
 
 #define superiors UI
 
+disclaimer = 免责声明
+
 gsi = 状态集成
 gsi_desc = 游戏状态集成
 gsi_port = 监听端口

@@ -12,6 +12,8 @@ exit = Exit
 
 #define superiors UI
 
+disclaimer = Disclaimer
+
 gsi = GSI
 gsi_depict = Game State Integration
 gsi_port = Listening Port

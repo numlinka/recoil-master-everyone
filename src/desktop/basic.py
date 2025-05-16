@@ -30,6 +30,8 @@ class _LocalI18n (i18nco.Internationalization):
         exit: str
 
     class UI (object):
+        disclaimer: str
+
         gsi: str
         gsi_depict: str
         gsi_port: str

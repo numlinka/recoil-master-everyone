@@ -14,6 +14,7 @@ import constants
 
 # internal
 from . import _slogan
+from . import _disclaimer
 from . import _gsi
 from . import _hud
 from . import _recoil
@@ -27,6 +28,7 @@ mainwindow: ttkbootstrap.Window
 style: ttkbootstrap.Style
 notebook: ttkbootstrap.Notebook
 slogan: _slogan.Slogan
+disclaimer: _disclaimer.Disclaimer
 gsi: _gsi.GSI
 hud: _hud.HUD
 recoil: _recoil.Recoil
@@ -57,6 +59,7 @@ def initialize_first():
 def initialize_setup():
     global slogan, gsi, hud, recoil, licenses
     slogan = _slogan.Slogan()
+    disclaimer = _disclaimer.Disclaimer()
     gsi = _gsi.GSI()
     hud = _hud.HUD()
     recoil = _recoil.Recoil()

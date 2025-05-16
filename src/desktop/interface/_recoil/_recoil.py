@@ -65,9 +65,10 @@ class Recoil (object):
             self.settings[name] = ScaleSetWidget(variable, label, scale, spinbox)
             variable.trace_add("write", self.setting_callback)
             self.frame.grid_columnconfigure(1, weight=1)
-            label.grid(row=index, column=0, padx=4, pady=(4, 4), sticky=W)
-            scale.grid(row=index, column=1, padx=4, pady=(0, 4), sticky=EW)
-            spinbox.grid(row=index, column=2, padx=4, pady=(0, 4), sticky=W)
+            pady = (0 if index != 0 else 4, 4)
+            label.grid(row=index, column=0, padx=4, pady=pady, sticky=W)
+            scale.grid(row=index, column=1, padx=4, pady=pady, sticky=EW)
+            spinbox.grid(row=index, column=2, padx=4, pady=pady, sticky=W)
 
     def setting_callback(self, *_):
         for name, widget in self.settings.items():

@@ -11,7 +11,6 @@ import psutil
 import ttkbootstrap
 
 from typex import once
-from ezudesign.utils import try_exec, exec_item
 from ttkbootstrap.dialogs import Messagebox
 from ttkbootstrap.constants import *
 from ezudesign.configuration import ConfigurationBaseException
@@ -153,10 +152,10 @@ class GSI (object):
         game_cwd = os.path.dirname(game_file_path)
         path = os.path.join(game_cwd, "..", "..", "csgo", "cfg", "gamestate_integration_consolesample.cfg")
         path = os.path.abspath(path)
-        
+
         try:
             with open(path, "w", encoding="utf-8") as file:
-                content = constants.lt.CS2_gsi_CFG_TEMPLATE
+                content = constants.lt.CS2_GSI_CFG_TEMPLATE
                 content = content.replace("<$PORT>", str(s_port))
                 content = content.replace("<$TIMEOUT>", str(core.config.gsi_timeout))
                 content = content.replace("<$BUFFER>", str(core.config.gsi_buffer))

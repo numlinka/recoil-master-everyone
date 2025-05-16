@@ -12,7 +12,6 @@ from PIL import Image, ImageTk
 # local
 import core
 import interface
-from basic import cwd
 
 
 def save_mainwindow_state(*_) -> None:

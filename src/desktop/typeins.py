@@ -2,19 +2,11 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
 # std
+from typing import TypedDict
 from dataclasses import dataclass, field
-from typing import Literal, Iterable, TypedDict
 
 # local
 from constants import *
-
-
-# Teams = Literal[T, CT]
-# MapPhases = Literal[LIVE]
-# WeaponTypes = Literal[KNIFE, PISTOL, RIFLE]
-# WeaponStatus = Literal[ACTIVE, HOLSTERED, RELOADING]
-# PlayerActivitys = Literal[PLAYING]
-# RoundPhases = Literal[OVER]
 
 
 @dataclass
@@ -35,7 +27,7 @@ class GameStateMap (object):
     mode: str = ""  # 模式
     name: str = ""  # 地图名
     num_matches_to_win_series: int = 0
-    phase: str = ""  # 比赛阶段
+    phase: str = ""  # 比赛阶段  Literal[LIVE]
     team_ct: GameStateMapTeam = field(default_factory=GameStateMapTeam)
     team_t: GameStateMapTeam = field(default_factory=GameStateMapTeam)
 
@@ -71,17 +63,17 @@ class GameStatePlayerWeapon (object):
     ammo_reserve: int = 0  # 剩余弹药
     name: str = ""  # 武器名
     paintkit: str = ""  # 皮肤
-    state: str = ""  # 武器状态
-    type: str = ""  # 武器类型
+    state: str = ""  # 武器状态  Literal[ACTIVE, HOLSTERED, RELOADING]
+    type: str = ""  # 武器类型  Literal[KNIFE, PISTOL, RIFLE]
 
 
 @dataclass
 class GameStatePlayer (object):
-    activity: str = ""  # 状态
+    activity: str = ""  # 状态  Literal[PLAYING]
     name: str = ""  # 玩家名
     observer_slot: int = 0  # 观察者数量
     steamid: str = ""
-    team: str = ""  # 队伍
+    team: str = ""  # 队伍  Literal[T, CT]
     state: GameStatePlayerState = field(default_factory=GameStatePlayerState)
     match_stats: GameStatePlayerMatch = field(default_factory=GameStatePlayerMatch)
     weapons: dict[str, GameStatePlayerWeapon] = field(default_factory=dict)
@@ -99,7 +91,7 @@ class GameStateProvider (object):
 
 @dataclass
 class GameStateRound (object):
-    phase: str = ""  # 回合阶段
+    phase: str = ""  # 回合阶段  Literal[OVER]
     win_team: str = ""  # 胜利队伍
 
 

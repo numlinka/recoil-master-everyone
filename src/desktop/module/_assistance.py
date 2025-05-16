@@ -28,15 +28,16 @@ class Assistance (Singleton):
         path = os.path.join(cwd.assistance, "win32api-mouse.exe")
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        self.assistance = subprocess.Popen([path, "recoil-master-everyone:assistance"], 
-                                           stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE,
-                                           stderr=subprocess.PIPE,
-                                           text=True,
-                                           bufsize=1,
-                                           universal_newlines=True,
-                                           startupinfo=startupinfo,
-                                           )
+        self.assistance = subprocess.Popen(
+            [path, "recoil-master-everyone:assistance"], 
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=1,
+            universal_newlines=True,
+            startupinfo=startupinfo,
+            )
         self.command = Command(self.assistance)
 
     def stop(self) -> None:

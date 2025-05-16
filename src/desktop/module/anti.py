@@ -31,5 +31,6 @@ class Anti:
 
 @once
 def initialize_final():
+    return
     anti = Anti()
     anti.keyboard_listener.start()

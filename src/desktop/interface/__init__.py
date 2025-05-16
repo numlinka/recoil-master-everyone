@@ -30,7 +30,7 @@ slogan: _slogan.Slogan
 gsi: _gsi.GSI
 hud: _hud.HUD
 recoil: _recoil.Recoil
-anti: _anti.Anti
+# anti: _anti.Anti
 licenses: _license.License
 
 
@@ -55,12 +55,12 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global slogan, gsi, hud, recoil, anti, licenses
+    global slogan, gsi, hud, recoil, licenses
     slogan = _slogan.Slogan()
     gsi = _gsi.GSI()
     hud = _hud.HUD()
     recoil = _recoil.Recoil()
-    anti = _anti.Anti()
+    # anti = _anti.Anti()
     licenses = _license.License()
 
     for activity in _activitys:

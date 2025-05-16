@@ -50,6 +50,8 @@ class LocalConfiguration (Configuration):
     anti_ad_ghosting = setting(int, 0, NumericalRange(0, 1))
     anti_ws_ghosting = setting(int, 0, NumericalRange(0, 1))
 
+    assistance_mouse = setting(str)
+
 
 def save(*_):
     try_exec(exec_item(core.config.ctrl.save_json, cwd.configuration, base64=True))

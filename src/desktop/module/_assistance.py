@@ -3,6 +3,7 @@
 
 # std
 import os
+import threading
 import subprocess
 
 from typing import Optional
@@ -16,55 +17,86 @@ import constants
 from basic import cwd
 
 
-class Assistance (Singleton):
-    def __init__ (self) -> None:
-        self.assistance: Optional[subprocess.Popen] = None
-        self.command: Optional[Command] = None
+class AssistanceMouse (object):
+    def __init__(self) -> None:
+        self._lock = threading.RLock()
+        self._popen: Optional[subprocess.Popen] = None
 
-    def run(self) -> None:
-        if isinstance(self.assistance, subprocess.Popen) and self.assistance.is_alive():
-            return
+    @property
+    def is_alive(self) -> bool:
+        with self._lock:
+            return isinstance(self._popen, subprocess.Popen) and self._popen.poll() is None
 
-        path = os.path.join(cwd.assistance, "win32api-mouse.exe")
-        startupinfo = subprocess.STARTUPINFO()
-        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        self.assistance = subprocess.Popen(
-            [path, "recoil-master-everyone:assistance"], 
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            bufsize=1,
-            universal_newlines=True,
-            startupinfo=startupinfo,
+    def run(self) -> bool:
+        with self._lock:
+            if self.is_alive:
+                return False
+
+            path = os.path.join(cwd.assistance.mouse, f"{core.config.assistance_mouse}.exe")
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            self._popen = subprocess.Popen(
+                [path, "recoil-master-everyone:assistance"], 
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                bufsize=1,
+                universal_newlines=True,
+                startupinfo=startupinfo,
             )
-        self.command = Command(self.assistance)
 
-    def stop(self) -> None:
-        self.command.exit()
-        self.assistance.wait()
-        self.assistance = None
+            core.event.emit(constants.event.ASSISTANCE_MOUSE_UPDATE)
+            return True
 
+    def stop(self) -> bool:
+        with self._lock:
+            if not self.is_alive:
+                return False
 
-class Command (object):
-    def __init__ (self, assistance: subprocess.Popen) -> None:
-        self.assistance = assistance
+            self._popen.stdin.write("exit\n")
+            self._popen.stdin.flush()
+
+            try:
+                self._popen.wait(3)
+
+            except subprocess.TimeoutExpired:
+                self._popen.kill()
+                self._popen.wait()
+
+            self._popen = None
+            core.event.emit(constants.event.ASSISTANCE_MOUSE_UPDATE)
+            return True
 
     def exit(self) -> None:
-        self.assistance.stdin.write("exit\n")
-        self.assistance.stdin.flush()
+        self.stop()
 
-    def tracks(self, name: str) -> None:
-        self.assistance.stdin.write(f"tracks {name}\n")
-        self.assistance.stdin.flush()
+    def tracks(self, mouse_tracks: str) -> bool:
+        with self._lock:
+            if not self.is_alive:
+                return False
 
-    def condition(self, value: bool) -> None:
-        self.assistance.stdin.write(f"condition {int(value)}\n")
-        self.assistance.stdin.flush()
+            self._popen.stdin.write(f"tracks {mouse_tracks}\n")
+            self._popen.stdin.flush()
+            return True
+
+    def condition(self, value: bool) -> bool:
+        with self._lock:
+            if not self.is_alive:
+                return False
+
+            self._popen.stdin.write(f"condition {int(value)}\n")
+            self._popen.stdin.flush()
+            return True
+
+
+class Assistance (Singleton):
+    def __init__ (self) -> None:
+        self.mouse = AssistanceMouse()
 
 
 @once
 def initialize_final() -> None:
     assistance = Assistance()
-    core.event.subscribe(constants.event.ENTER_MAINLOOP, assistance.run, async_=True)
-    core.action.exit.add_task(assistance.stop, 8000)
+    core.event.subscribe(constants.event.ENTER_MAINLOOP, assistance.mouse.run, async_=True)
+    core.action.exit.add_task(assistance.mouse.stop, 8000)

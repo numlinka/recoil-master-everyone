@@ -15,7 +15,10 @@ class _CWD (Directory):
         weapons = "weapons"
         favicon = "favicon.ico"
 
-    assistance = "assistance"
+    class assistance (Directory):
+        mouse = "mouse"
+        keyboard = "keyboard"
+
     logs = "logs"
     configuration = FilePath("configuration")
 
@@ -61,6 +64,11 @@ class _LocalI18n (i18nco.Internationalization):
         hud_gun_only: str
 
         recoil: str
+        recoil_engine: str
+        recoil_run: str
+        recoil_stop: str
+        recoil_service_running: str
+        recoil_service_stop: str
         recoil_track: str
         recoil_sensitivity: str
         recoil_horizontal: str

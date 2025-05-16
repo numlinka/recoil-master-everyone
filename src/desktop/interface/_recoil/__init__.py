@@ -12,6 +12,7 @@ import interface
 from basic import i18n
 
 # internal
+from . import _engine
 from . import _recoil
 from . import _weapon
 
@@ -27,6 +28,7 @@ class Recoil (object):
     def build (self):
         self.notebook = ttkbootstrap.Notebook(self.frame)
         self.notebook.pack(fill=BOTH, expand=True, padx=5, pady=5)
+        self.engine = _engine.Engine(self.notebook)
         self.recoil = _recoil.Recoil(self.notebook)
         self.weapon = _weapon.Weapon(self.notebook)
 

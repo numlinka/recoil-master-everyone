@@ -76,7 +76,7 @@ class Condition (object):
 
             self._last_taracks = mouse_tracks
 
-        module.assistance.command.tracks(mouse_tracks)
+        module.assistance.mouse.tracks(mouse_tracks)
         return True
 
     def active_update(self, process_name: str) -> None:
@@ -94,7 +94,7 @@ class Condition (object):
                 return
 
             self._last_condition = condition
-        module.assistance.command.condition(condition)
+        module.assistance.mouse.condition(condition)
         core.event.emit(constants.event.CONDITION_UPDATE)
 
     @once

@@ -46,6 +46,11 @@ hud_active_only = Active Only
 hud_gun_only = Weapon Only
 
 recoil = Recoil
+recoil_engine = Mouse Engine
+recoil_run = Start the mouse engine
+recoil_stop = Stop the mouse engine
+recoil_service_running = The mouse engine is running!
+recoil_service_stop = The mouse engine is stop.
 recoil_track = Mouse Track
 recoil_sensitivity = Game Mouse Sensitivity
 recoil_horizontal = Horizontal percentage

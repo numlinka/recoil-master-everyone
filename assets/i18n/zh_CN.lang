@@ -45,8 +45,13 @@ hud_active_first = 手持武器优先
 hud_active_only = 仅显示手持武器
 hud_gun_only = 仅显示枪械武器
 
-recoil = 压枪
-recoil_track = 鼠标轨迹
+recoil = 压枪辅助
+recoil_engine = 鼠标引擎
+recoil_run = 启动鼠标引擎
+recoil_stop = 关闭鼠标引擎
+recoil_service_running = 鼠标引擎正在运行.
+recoil_service_stop = 鼠标引擎关闭.
+recoil_track = 轨迹参数
 recoil_sensitivity = 游戏鼠标灵敏度
 recoil_horizontal = 水平修正幅度
 recoil_vertical = 垂直修正幅度
@@ -54,15 +59,15 @@ recoil_smoothing = 鼠标平滑系数
 recoil_leading_delay = 前导延迟占比
 recoil_duty_cycle = 鼠标操作占空比
 
-weapon = 武器
+weapon = 武器开关
 
-anti = 急停
+anti = 急停辅助
 anti_ad_ghosting = AD 无冲突
 anti_ad_ghosting_desc = AD 不会同时按下
 anti_ws_ghosting = WS 无冲突
 anti_ws_ghosting_desc = WS 不会同时按下
 
-licenses = 许可证
+licenses = 开源许可
 
 
 #define superiors ITEM

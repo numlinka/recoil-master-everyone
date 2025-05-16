@@ -14,6 +14,7 @@ class Anti:
         self.keyboard = pynput.keyboard.Controller()
         self.mouse = pynput.mouse.Controller()
         self.keyboard_listener = pynput.keyboard.Listener(on_press=self.on_press)
+        self.keyboard_listener.name = "AntiKeyboard"
         self.keyboard_listener.daemon = True
         self.w = pynput.keyboard.KeyCode.from_char("w")
         self.a = pynput.keyboard.KeyCode.from_char("a")

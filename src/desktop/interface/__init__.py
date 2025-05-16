@@ -24,6 +24,7 @@ from . import methods
 _activitys = [ _hud, _recoil]
 
 mainwindow: ttkbootstrap.Window
+style: ttkbootstrap.Style
 notebook: ttkbootstrap.Notebook
 slogan: _slogan.Slogan
 gsi: _gsi.GSI
@@ -35,9 +36,11 @@ licenses: _license.License
 
 @once
 def initialize_first():
-    global mainwindow, notebook
+    global mainwindow, style, notebook
 
     mainwindow = ttkbootstrap.Window()
+    style = ttkbootstrap.Style()
+    style.theme_use("darkly")
     mainwindow.title(env.MAIN_TITLE)
     methods.load_mainwindow_state()
     methods.set_window_icon_from_base64(mainwindow, constants.media.favicon)

@@ -3,9 +3,6 @@
 
 # std
 import os
-import tkinter
-
-from tkinter import TclError
 from dataclasses import dataclass
 
 # size
@@ -13,7 +10,6 @@ import ttkbootstrap
 
 from typex import once
 from ttkbootstrap.constants import *
-from ezudesign.configuration import ConfigurationBaseException
 
 # local
 import core

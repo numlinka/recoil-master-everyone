@@ -57,7 +57,7 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global slogan, gsi, hud, recoil, licenses
+    global slogan, disclaimer, gsi, hud, recoil, licenses
     slogan = _slogan.Slogan()
     disclaimer = _disclaimer.Disclaimer()
     gsi = _gsi.GSI()

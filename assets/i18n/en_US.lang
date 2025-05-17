@@ -2,6 +2,7 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 # Internationalization -> en_US
 
+language = English (US)
 slogan = Everyone can be a recoil master!
 
 
@@ -68,6 +69,10 @@ anti_ad_ghosting = AD Anti-Ghosting
 anti_ad_ghosting_desc = No Key Ghosting for A and D
 anti_ws_ghosting = WS Anti-Ghosting
 anti_ws_ghosting_desc = No Key Ghosting for W and S
+
+settings = Settings
+settings_localed = Localization
+settings_theme = Theme
 
 licenses = Licenses
 

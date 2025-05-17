@@ -18,14 +18,6 @@ import constants
 from basic import i18n
 
 
-@dataclass
-class ScaleSetWidget:
-    variable: ttkbootstrap.DoubleVar
-    label: ttkbootstrap.Label
-    scale: ttkbootstrap.Scale
-    spinbox: ttkbootstrap.Spinbox
-
-
 class Engine (object):
     def __init__(self, notebook: ttkbootstrap.Notebook):
         self.notebook = notebook

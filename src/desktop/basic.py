@@ -85,6 +85,10 @@ class _LocalI18n (i18nco.Internationalization):
         anti_ad_ghosting: str
         anti_ws_ghosting: str
 
+        settings: str
+        settings_localed: str
+        settings_theme: str
+
         licenses: str
 
     class ITEM (object):

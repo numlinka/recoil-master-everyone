@@ -2,6 +2,7 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 # Internationalization -> zh_CN
 
+language = 简体中文（中国）
 slogan = 每个人都可以是压枪大师!
 
 
@@ -68,6 +69,10 @@ anti_ad_ghosting = AD 无冲突
 anti_ad_ghosting_desc = AD 不会同时按下
 anti_ws_ghosting = WS 无冲突
 anti_ws_ghosting_desc = WS 不会同时按下
+
+settings = 软件设置
+settings_localed = 首选语言
+settings_theme = 主题风格
 
 licenses = 开源许可
 

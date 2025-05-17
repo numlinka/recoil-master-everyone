@@ -1,10 +1,14 @@
 # Licensed under the GNU General Public License v3.0, see <http://www.gnu.org/licenses/gpl-3.0.html>.
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
+# std
+import tkinter
+
 # site
 import ttkbootstrap
 
 from typex import once
+from ezudesign.utils import try_exec, exec_item
 from ttkbootstrap.constants import *
 
 # local
@@ -19,6 +23,7 @@ from . import _gsi
 from . import _hud
 from . import _recoil
 from . import _anti
+from . import _setting
 from . import _license
 from . import methods
 
@@ -33,7 +38,13 @@ gsi: _gsi.GSI
 hud: _hud.HUD
 recoil: _recoil.Recoil
 # anti: _anti.Anti
+setting: _setting.Setting
 licenses: _license.License
+
+
+def set_theme(theme_name: str) -> None:
+    try_exec(exec_item(style.theme_use, theme_name))
+    try_exec(exec_item("hud.hud_window.configure", bg="grey"))
 
 
 @once
@@ -42,7 +53,7 @@ def initialize_first():
 
     mainwindow = ttkbootstrap.Window()
     style = ttkbootstrap.Style()
-    style.theme_use("darkly")
+    set_theme(core.config.theme)
     mainwindow.title(env.MAIN_TITLE)
     methods.load_mainwindow_state()
     methods.set_window_icon_from_base64(mainwindow, constants.media.favicon)
@@ -57,13 +68,14 @@ def initialize_first():
 
 @once
 def initialize_setup():
-    global slogan, disclaimer, gsi, hud, recoil, licenses
+    global slogan, disclaimer, gsi, hud, recoil, setting, licenses
     slogan = _slogan.Slogan()
     disclaimer = _disclaimer.Disclaimer()
     gsi = _gsi.GSI()
     hud = _hud.HUD()
     recoil = _recoil.Recoil()
     # anti = _anti.Anti()
+    setting = _setting.Setting()
     licenses = _license.License()
 
     for activity in _activitys:

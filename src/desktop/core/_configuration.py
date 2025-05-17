@@ -17,6 +17,7 @@ class LocalConfiguration (Configuration):
     log_to_std = setting(int, 0, NumericalRange(0, 1))
     log_to_file = setting(int, 0, NumericalRange(0, 1))
 
+    theme = setting(str)
     window_width = setting(int, 650)
     window_height = setting(int, 450)
     window_x = setting(int, -1)

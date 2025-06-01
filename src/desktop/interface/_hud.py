@@ -2,6 +2,7 @@
 # recoil-master-everyone Copyright (C) 2024 numlinka.
 
 # std
+import ctypes
 from tkinter import TclError
 from dataclasses import dataclass, field
 
@@ -53,6 +54,7 @@ class HUD (Singleton):
         self.last_amount = 0
         self.build()
         self.build_hud_window()
+        self.number_settings_update()
 
     @once
     def build(self):
@@ -113,7 +115,7 @@ class HUD (Singleton):
         self.hud_window.attributes("-alpha", core.config.hud_alpha / 100)
         self.hud_window.wm_attributes("-topmost", True)
 
-        interface.methods.center_window_to_screen(self.hud_window, 600, 400, True)
+        # interface.methods.center_window_to_screen(self.hud_window, 600, 400, True)
 
         self.hud_window.grid_columnconfigure(9, weight=1)
         self.hud_window.grid_rowconfigure(9, weight=1)
@@ -127,6 +129,14 @@ class HUD (Singleton):
             hud_ammo = ttkbootstrap.Label(self.hud_window, textvariable=v_ammo)
             hud_weapon = ttkbootstrap.Label(self.hud_window, textvariable=v_weapon, background="White", foreground="Black")
             self.huds.append(HUDWeapon(v_ammo, v_weapon, hud_ammo, hud_weapon))
+
+    @once
+    def set_click_through(self) -> None:
+        user32 = ctypes.WinDLL("user32")
+        # self.hud_window.update_idletasks()  # ? This line is not needed, as the window is already created.
+        hwnd = user32.GetParent(self.hud_window.winfo_id())
+        style = user32.GetWindowLongPtrW(hwnd, -20)
+        user32.SetWindowLongPtrW(hwnd, -20, style | 0x00000020 | 0x00080000)
 
     def number_settings_update(self, *_) -> None:
         for name, numberwidget in self.number_settings.items():
@@ -221,3 +231,7 @@ class HUD (Singleton):
 
     def condition_update(self) -> None:
         ...
+
+
+def initialize_final() -> None:
+    core.event.subscribe(constants.event.ENTER_MAINLOOP, HUD().set_click_through)
